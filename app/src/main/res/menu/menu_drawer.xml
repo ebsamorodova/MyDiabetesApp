@@ -1,0 +1,50 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="ru.hse.cs.ai.kate.app.MainActivity">
+
+    <item android:title="Основное">
+        <menu>
+            <item android:id="@+id/action_profile"
+                  android:title="@string/drawer_item_home"
+                  android:orderInCategory="100"
+                  app:showAsAction="never"
+            />
+
+            <item android:id="@+id/action_reminder"
+                  android:title="@string/drawer_item_reminder"
+                  android:orderInCategory="100"
+                  app:showAsAction="never"
+            />
+
+            <item android:id="@+id/action_notes"
+                  android:title="@string/drawer_item_notes"
+                  android:orderInCategory="100"
+                  app:showAsAction="never"
+            />
+
+            <item android:id="@+id/action_contact_doctor"
+                  android:title="@string/drawer_item_contact_doctor"
+                  android:orderInCategory="100"
+                  app:showAsAction="never"
+            />
+        </menu>
+    </item>
+
+    <item android:title="Дополнительное">
+        <menu>
+            <item android:id="@+id/action_addition_info"
+                  android:title="@string/drawer_item_additional_info"
+                  android:orderInCategory="100"
+                  app:showAsAction="never"
+            />
+
+            <item android:id="@+id/action_help"
+                  android:title="@string/drawer_item_help"
+                  android:orderInCategory="100"
+                  app:showAsAction="never"
+            />
+        </menu>
+    </item>
+
+</menu>

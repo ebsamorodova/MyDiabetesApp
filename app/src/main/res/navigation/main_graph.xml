@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_graph"
+            app:startDestination="@id/firstFragment">
+
+    <fragment android:id="@+id/firstFragment" android:name="ru.hse.cs.ai.kate.app.FirstFragment"
+              android:label="Your diabetes helper" tools:layout="@layout/fragment_first">
+        <action android:id="@+id/action_firstFragment_to_secondFragment" app:destination="@id/helpFragment"/>
+        <action android:id="@+id/action_firstFragment_to_profileFragment" app:destination="@id/profileFragment"/>
+        <action android:id="@+id/action_firstFragment_to_addInfoFragment" app:destination="@id/addInfoFragment"/>
+        <action android:id="@+id/action_firstFragment_to_doctorFragment" app:destination="@id/doctorFragment"/>
+        <action android:id="@+id/action_firstFragment_to_notesFragment" app:destination="@id/notesFragment"/>
+        <action android:id="@+id/action_firstFragment_to_reminderFragment" app:destination="@id/reminderFragment"/>
+        <action android:id="@+id/action_firstFragment_to_settingsFragment" app:destination="@id/settingsFragment"/>
+    </fragment>
+    <fragment android:id="@+id/helpFragment" android:name="ru.hse.cs.ai.kate.app.SecondFragment"
+              android:label="Помощь" tools:layout="@layout/fragment_second"/>
+    <fragment android:id="@+id/profileFragment" android:name="ru.hse.cs.ai.kate.app.profileFragment"
+              android:label="Мой профиль" tools:layout="@layout/fragment_profile"/>
+    <fragment android:id="@+id/addInfoFragment" android:name="ru.hse.cs.ai.kate.app.addInfoFragment"
+              android:label="Полезная информация" tools:layout="@layout/fragment_add_info"/>
+    <fragment android:id="@+id/doctorFragment" android:name="ru.hse.cs.ai.kate.app.doctorFragment"
+              android:label="Написать врачу" tools:layout="@layout/fragment_doctor"/>
+    <fragment android:id="@+id/notesFragment" android:name="ru.hse.cs.ai.kate.app.notesFragment"
+              android:label="Записи" tools:layout="@layout/fragment_notes"/>
+    <fragment android:id="@+id/reminderFragment" android:name="ru.hse.cs.ai.kate.app.reminderFragment"
+              android:label="Уведомления" tools:layout="@layout/fragment_reminder"/>
+    <fragment android:id="@+id/settingsFragment" android:name="ru.hse.cs.ai.kate.app.settingsFragment"
+              android:label="Настройки" tools:layout="@layout/fragment_settings"/>
+</navigation>
