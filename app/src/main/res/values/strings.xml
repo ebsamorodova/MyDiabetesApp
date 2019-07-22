@@ -11,6 +11,11 @@
     <string name="drawer_item_help">Помощь</string>
     <string name="drawer_item_contact_doctor">Написать лечащему врачу</string>
 
+
+    <string name="date">Дата рождения</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="first_fragment_start">Starting page</string>
 

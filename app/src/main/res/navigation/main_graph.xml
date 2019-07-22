@@ -16,7 +16,7 @@
     </fragment>
     <fragment android:id="@+id/helpFragment" android:name="ru.hse.cs.ai.kate.app.SecondFragment"
               android:label="Помощь" tools:layout="@layout/fragment_second"/>
-    <fragment android:id="@+id/profileFragment" android:name="ru.hse.cs.ai.kate.app.profileFragment"
+    <fragment android:id="@+id/profileFragment" android:name="ru.hse.cs.ai.kate.app.ProfileFragment"
               android:label="Мой профиль" tools:layout="@layout/fragment_profile"/>
     <fragment android:id="@+id/addInfoFragment" android:name="ru.hse.cs.ai.kate.app.addInfoFragment"
               android:label="Полезная информация" tools:layout="@layout/fragment_add_info"/>

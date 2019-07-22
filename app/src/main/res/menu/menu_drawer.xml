@@ -8,17 +8,20 @@
             <item android:id="@+id/action_profile"
                   android:title="@string/drawer_item_home"
                   android:orderInCategory="100"
+                  android:icon="@drawable/baseline_account_circle_black_24"
                   app:showAsAction="never"
             />
 
             <item android:id="@+id/action_reminder"
                   android:title="@string/drawer_item_reminder"
                   android:orderInCategory="100"
+                  android:icon="@drawable/baseline_notifications_none_black_24"
                   app:showAsAction="never"
             />
 
             <item android:id="@+id/action_notes"
                   android:title="@string/drawer_item_notes"
+                  android:icon="@drawable/outline_edit_black_24"
                   android:orderInCategory="100"
                   app:showAsAction="never"
             />
@@ -26,6 +29,7 @@
             <item android:id="@+id/action_contact_doctor"
                   android:title="@string/drawer_item_contact_doctor"
                   android:orderInCategory="100"
+                  android:icon="@drawable/outline_mail_black_24"
                   app:showAsAction="never"
             />
         </menu>
@@ -36,14 +40,24 @@
             <item android:id="@+id/action_addition_info"
                   android:title="@string/drawer_item_additional_info"
                   android:orderInCategory="100"
+                  android:icon="@drawable/outline_info_black_24"
                   app:showAsAction="never"
             />
 
             <item android:id="@+id/action_help"
                   android:title="@string/drawer_item_help"
                   android:orderInCategory="100"
+                  android:icon="@drawable/outline_help_outline_black_24"
                   app:showAsAction="never"
             />
+
+            <item android:id="@+id/action_settings"
+                  android:title="@string/drawer_item_settings"
+                  android:orderInCategory="100"
+                  android:icon="@drawable/outline_settings_black_24"
+                  app:showAsAction="never"
+            />
+
         </menu>
     </item>
 
