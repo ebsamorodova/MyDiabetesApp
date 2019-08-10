@@ -5,7 +5,7 @@
             app:startDestination="@id/firstFragment">
 
     <fragment android:id="@+id/firstFragment" android:name="ru.hse.cs.ai.kate.app.FirstFragment"
-              android:label="Your diabetes helper" tools:layout="@layout/fragment_first">
+              android:label="ИнсулинОк" tools:layout="@layout/fragment_first">
         <action android:id="@+id/action_firstFragment_to_secondFragment" app:destination="@id/helpFragment"/>
         <action android:id="@+id/action_firstFragment_to_profileFragment" app:destination="@id/profileFragment"/>
         <action android:id="@+id/action_firstFragment_to_addInfoFragment" app:destination="@id/addInfoFragment"/>
@@ -13,6 +13,7 @@
         <action android:id="@+id/action_firstFragment_to_notesFragment" app:destination="@id/notesFragment"/>
         <action android:id="@+id/action_firstFragment_to_reminderFragment" app:destination="@id/reminderFragment"/>
         <action android:id="@+id/action_firstFragment_to_settingsFragment" app:destination="@id/settingsFragment"/>
+        <action android:id="@+id/action_firstFragment_to_addNoteFragment" app:destination="@id/addNoteFragment"/>
     </fragment>
     <fragment android:id="@+id/helpFragment" android:name="ru.hse.cs.ai.kate.app.SecondFragment"
               android:label="Помощь" tools:layout="@layout/fragment_second"/>
@@ -22,10 +23,14 @@
               android:label="Полезная информация" tools:layout="@layout/fragment_add_info"/>
     <fragment android:id="@+id/doctorFragment" android:name="ru.hse.cs.ai.kate.app.doctorFragment"
               android:label="Написать врачу" tools:layout="@layout/fragment_doctor"/>
-    <fragment android:id="@+id/notesFragment" android:name="ru.hse.cs.ai.kate.app.notesFragment"
-              android:label="Записи" tools:layout="@layout/fragment_notes"/>
+    <fragment android:id="@+id/notesFragment" android:name="ru.hse.cs.ai.kate.app.NotesFragment"
+              android:label="Записи" tools:layout="@layout/fragment_notes">
+        <action android:id="@+id/action_notesFragment_to_addNoteFragment" app:destination="@id/addNoteFragment"/>
+    </fragment>
     <fragment android:id="@+id/reminderFragment" android:name="ru.hse.cs.ai.kate.app.reminderFragment"
               android:label="Уведомления" tools:layout="@layout/fragment_reminder"/>
     <fragment android:id="@+id/settingsFragment" android:name="ru.hse.cs.ai.kate.app.settingsFragment"
               android:label="Настройки" tools:layout="@layout/fragment_settings"/>
+    <fragment android:id="@+id/addNoteFragment" android:name="ru.hse.cs.ai.kate.app.AddNoteFragment"
+              tools:layout="@layout/fragment_add_note" android:label="Новая запись"/>
 </navigation>

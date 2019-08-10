@@ -11,6 +11,7 @@
     <string name="drawer_item_help">Помощь</string>
     <string name="drawer_item_contact_doctor">Написать лечащему врачу</string>
 
+    <string name="new_note">Новая запись</string>
 
     <string name="date">Дата рождения</string>
     <string name="name">Имя</string>
