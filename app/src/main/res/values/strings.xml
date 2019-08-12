@@ -17,6 +17,12 @@
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
 
+    <string name="glucose">Глюкоза</string>
+    <string name="bread_units">ХЕ</string>
+    <string name="insulin_basal">Инсулин (базальный)</string>
+    <string name="insulin_bolus">Инсулин (болюсный)</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="first_fragment_start">Starting page</string>
 

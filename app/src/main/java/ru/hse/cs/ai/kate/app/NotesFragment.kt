@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 
 class NotesFragment : Fragment() {
     lateinit var newNote: FloatingActionButton
+    lateinit var deleteNotes: FloatingActionButton
     lateinit var list: RecyclerView
     lateinit var notesAdapter: NotesAdapter
 
@@ -33,17 +34,24 @@ class NotesFragment : Fragment() {
             setOnClickListener {
                 // Navigation.findNavController(it).navigate(R.id.action_notesFragment_to_addNoteFragment, null)
                 view.notes_list.scrollToPosition(0)
-                notesAdapter.data.add(
-                    Note(
-                        Calendar.getInstance().time,
-                        Random.nextDouble(),
-                        Random.nextDouble(),
-                        Random.nextDouble(),
-                        Random.nextDouble()
-                    )
+                val nextNote = Note(
+                    Calendar.getInstance().time,
+                    Random.nextDouble(),
+                    Random.nextDouble(),
+                    Random.nextDouble(),
+                    Random.nextDouble()
                 )
+
+                notesAdapter.addNote(nextNote)
             }
         }
+
+        deleteNotes = view.fab_clear_base.apply {
+            setOnClickListener {
+                notesAdapter.deleteAllNotes()
+            }
+        }
+
         list = view.notes_list.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -65,14 +73,6 @@ class NotesFragment : Fragment() {
     }
 }
 
-data class Note(
-    val date: Date,
-    val glucose: Double,
-    val insulinBasal: Double,
-    val insulinBolus: Double,
-    val breadUnits: Double
-)
-
 class NotesAdapter : RecyclerView.Adapter<NotesAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val textView = LayoutInflater.from(parent.context)
@@ -80,33 +80,32 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.Holder>() {
         return Holder(textView)
     }
 
-    override fun getItemCount(): Int = data.size()
+    override fun getItemCount(): Int = data.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val element = data[position]
         holder.item.textDate.text = "Запись от ${DateFormat.getDateTimeInstance().format(element.date)}"
+        holder.item.textGlucose.text = "%.1f".format(element.glucose)
+        holder.item.textBreadUnits.text = "%.1f".format(element.breadUnits)
+        holder.item.textInsulinBasal.text = "%.1f".format(element.insulinBasal)
+        holder.item.textInsulinBolus.text = "%.1f".format(element.insulinBolus)
     }
 
     class Holder(val item: View) : RecyclerView.ViewHolder(item)
 
-    val data = SortedList<Note>(Note::class.java, object : SortedList.Callback<Note>() {
-        override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean = oldItem == newItem
+    val databaseDao = App.instance.database.notesDao()
+    val data = databaseDao.getAll().toMutableList()
 
-        override fun areItemsTheSame(item1: Note, item2: Note): Boolean = item1.date == item2.date
+    fun addNote(note: Note) {
+        data.add(0, note)
+        databaseDao.insert(note)
+        notifyItemRangeInserted(0, 1)
+    }
 
-        override fun onMoved(fromPosition: Int, toPosition: Int) = notifyItemMoved(fromPosition, toPosition)
-
-        override fun onChanged(position: Int, count: Int) = notifyItemChanged(position, count)
-
-        override fun onInserted(position: Int, count: Int) = notifyItemRangeInserted(position, count)
-
-        override fun onRemoved(position: Int, count: Int) = notifyItemRangeRemoved(position, count)
-
-        override fun compare(o1: Note, o2: Note) = -o1.date.compareTo(o2.date)
-
-    })
-}
-
-
-object NotesStorage {
+    fun deleteAllNotes() {
+        val amount = itemCount
+        databaseDao.deleteAll()
+        data.clear()
+        notifyItemRangeRemoved(0, amount)
+    }
 }
