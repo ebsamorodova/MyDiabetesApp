@@ -1,97 +1,73 @@
 package ru.hse.cs.ai.kate.app
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_add_note.view.*
+import java.util.*
+import android.widget.Toast
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [AddNoteFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [AddNoteFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class AddNoteFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var getNewNote: FloatingActionButton
+    lateinit var eGlucose: EditText
+    lateinit var eBreadUnits: EditText
+    lateinit var eInsulinBasal: EditText
+    lateinit var eInsulinBolus: EditText
+    lateinit var toast: Toast
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_note, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.fragment_add_note, container, false).also { view ->
+        eGlucose = view.findViewById(R.id.editGlucose)
+        eBreadUnits = view.findViewById(R.id.editBreadUnits)
+        eInsulinBasal = view.findViewById(R.id.editInsulinBasal)
+        eInsulinBolus = view.findViewById(R.id.editInsulinBolus)
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
+        getNewNote = view.fab_save_note.apply {
+            setOnClickListener {
+                if (eGlucose.text.isEmpty() ||
+                    eBreadUnits.text.isEmpty() ||
+                    eInsulinBasal.text.isEmpty() ||
+                    eInsulinBolus.text.isEmpty()
+                ) {
+                    toast = Toast.makeText(
+                        activity,
+                        "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT
+                    )
+                    toast.show()
+                } else {
+                    val newGlucose = eGlucose.text.toString().toDouble()
+                    val newBreadUnits = eBreadUnits.text.toString().toDouble()
+                    val newInsulinBasal = eInsulinBasal.text.toString().toDouble()
+                    val newInsulinBolus = eInsulinBolus.text.toString().toDouble()
+                    val nextNote = Note(
+                        Calendar.getInstance().time,
+                        newGlucose, newBreadUnits, newInsulinBasal, newInsulinBolus
+                    )
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
+                    val databaseDao = App.instance.database.notesDao()
+                    databaseDao.insert(nextNote)
 
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
+                    toast = Toast.makeText(
+                        activity,
+                        "Запись добавлена!", Toast.LENGTH_SHORT
+                    )
+                    toast.show()
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddNoteFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddNoteFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    eGlucose.text.clear()
+                    eBreadUnits.text.clear()
+                    eInsulinBasal.text.clear()
+                    eInsulinBolus.text.clear()
                 }
             }
+        }
     }
+
+
 }

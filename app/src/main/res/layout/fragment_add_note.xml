@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".AddNoteFragment">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".AddNoteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+            app:layout_constraintTop_toTopOf="parent"
+            android:hint="@string/glucose"
+            android:id="@+id/editGlucose"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="60dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            tools:ignore="Autofill, LabelFor"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"/>
 
-</FrameLayout>
+    <EditText
+            app:layout_constraintTop_toBottomOf="@id/editGlucose"
+            android:hint="@string/bread_units"
+            android:id="@+id/editBreadUnits"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            tools:ignore="Autofill, LabelFor"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"/>
+    <EditText
+            app:layout_constraintTop_toBottomOf="@id/editBreadUnits"
+            android:hint="@string/insulin_basal"
+            android:id="@+id/editInsulinBasal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            tools:ignore="Autofill, LabelFor"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"/>
+    <EditText
+            app:layout_constraintTop_toBottomOf="@id/editInsulinBasal"
+            android:hint="@string/insulin_bolus"
+            android:id="@+id/editInsulinBolus"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            tools:ignore="Autofill, LabelFor"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_save_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_save"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

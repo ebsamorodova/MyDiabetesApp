@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SortedList
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_notes.view.*
 import kotlinx.android.synthetic.main.note_layout.view.*
@@ -32,17 +31,17 @@ class NotesFragment : Fragment() {
         notesAdapter = NotesAdapter()
         newNote = view.fab_new_note.apply {
             setOnClickListener {
-                // Navigation.findNavController(it).navigate(R.id.action_notesFragment_to_addNoteFragment, null)
-                view.notes_list.scrollToPosition(0)
-                val nextNote = Note(
-                    Calendar.getInstance().time,
-                    Random.nextDouble(),
-                    Random.nextDouble(),
-                    Random.nextDouble(),
-                    Random.nextDouble()
-                )
-
-                notesAdapter.addNote(nextNote)
+                Navigation.findNavController(it).navigate(R.id.action_notesFragment_to_addNoteFragment, null)
+//                view.notes_list.scrollToPosition(0)
+//                val nextNote = Note(
+//                    Calendar.getInstance().time,
+//                    Random.nextDouble(),
+//                    Random.nextDouble(),
+//                    Random.nextDouble(),
+//                    Random.nextDouble()
+//                )
+//
+//                notesAdapter.addNote(nextNote)
             }
         }
 

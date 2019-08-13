@@ -7,9 +7,9 @@ import java.util.*
 data class Note(
     @PrimaryKey val date: Date,
     @ColumnInfo(name = "glucose") val glucose: Double,
+    @ColumnInfo(name = "bread_units") val breadUnits: Double,
     @ColumnInfo(name = "insulin_basal") val insulinBasal: Double,
-    @ColumnInfo(name = "insulin_bolus") val insulinBolus: Double,
-    @ColumnInfo(name = "bread_units") val breadUnits: Double
+    @ColumnInfo(name = "insulin_bolus") val insulinBolus: Double
 )
 
 @Dao
