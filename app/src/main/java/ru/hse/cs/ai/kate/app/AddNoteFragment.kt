@@ -41,33 +41,41 @@ class AddNoteFragment : Fragment() {
                         "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT
                     )
                     toast.show()
-                } else {
-                    val newGlucose = eGlucose.text.toString().toDouble()
-                    val newBreadUnits = eBreadUnits.text.toString().toDouble()
-                    val newInsulinBasal = eInsulinBasal.text.toString().toDouble()
-                    val newInsulinBolus = eInsulinBolus.text.toString().toDouble()
-                    val nextNote = Note(
-                        Calendar.getInstance().time,
-                        newGlucose, newBreadUnits, newInsulinBasal, newInsulinBolus
-                    )
+                    return@setOnClickListener
+                }
 
-                    val databaseDao = App.instance.database.notesDao()
-                    databaseDao.insert(nextNote)
-
+                val newGlucose = eGlucose.text.toString().toDoubleOrNull()
+                val newBreadUnits = eBreadUnits.text.toString().toDoubleOrNull()
+                val newInsulinBasal = eInsulinBasal.text.toString().toDoubleOrNull()
+                val newInsulinBolus = eInsulinBolus.text.toString().toDoubleOrNull()
+                if (newGlucose == null || newBreadUnits == null || newInsulinBasal == null || newInsulinBolus == null) {
                     toast = Toast.makeText(
                         activity,
-                        "Запись добавлена!", Toast.LENGTH_SHORT
+                        "Пожалуйста, введите числа", Toast.LENGTH_SHORT
                     )
                     toast.show()
-
-                    eGlucose.text.clear()
-                    eBreadUnits.text.clear()
-                    eInsulinBasal.text.clear()
-                    eInsulinBolus.text.clear()
+                    return@setOnClickListener
                 }
+
+                val nextNote = Note(
+                    Calendar.getInstance().time,
+                    newGlucose, newBreadUnits, newInsulinBasal, newInsulinBolus
+                )
+                val databaseDao = App.instance.database.notesDao()
+                databaseDao.insert(nextNote)
+
+                toast = Toast.makeText(
+                    activity,
+                    "Запись добавлена!", Toast.LENGTH_SHORT
+                )
+                toast.show()
+
+                eGlucose.text.clear()
+                eBreadUnits.text.clear()
+                eInsulinBasal.text.clear()
+                eInsulinBolus.text.clear()
             }
         }
     }
-
-
 }
+

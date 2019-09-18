@@ -3,13 +3,13 @@
     <string name="app_name">DiabetesHelper</string>
     <string name="action_settings">Настройки</string>
     <string name="drawer_header">Header</string>
-    <string name="drawer_item_additional_info">Полезная информация</string>
+    <string name="drawer_item_additional_info">Информация</string>
     <string name="drawer_item_reminder">Уведомления</string>
     <string name="drawer_item_home">Профиль</string>
     <string name="drawer_item_notes">Записи</string>
     <string name="drawer_item_settings">Настройки</string>
     <string name="drawer_item_help">Помощь</string>
-    <string name="drawer_item_contact_doctor">Написать лечащему врачу</string>
+    <string name="drawer_item_contact_doctor">Написать врачу</string>
 
     <string name="new_note">Новая запись</string>
 
